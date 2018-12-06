@@ -70,5 +70,5 @@ config :logger, level: :info
 
 config :codestories_review_bot, CodestoriesReviewBot.Repo,
   url: {:system, "DATABASE_URL"},
-  pool_size: {:system, :integer, "POOL_SIZE", "10"},
+  pool_size: {:system, :integer, "POOL_SIZE", 10},
   ssl: true
