@@ -2,7 +2,7 @@ defmodule CodestoriesReviewBotWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :codestories_review_bot
 
   socket "/socket", CodestoriesReviewBotWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   # Serve at "/" the static files from "priv/static" directory.

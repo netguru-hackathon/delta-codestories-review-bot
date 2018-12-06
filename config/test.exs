@@ -12,7 +12,7 @@ config :logger, level: :warn
 # Configure your database
 config :codestories_review_bot, CodestoriesReviewBot.Repo,
   username: "postgres",
-  password: "postgres",
+  password: {:system, :string, "POSTGRES_DB_PASSWORD", "postgres"},
   database: "codestories_review_bot_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
