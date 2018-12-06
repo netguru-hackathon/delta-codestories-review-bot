@@ -10,11 +10,11 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :codestories_review_bot, CodestoriesReviewBotWeb.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [scheme: "https", host: "codestories-review-bot.herokuapp.com", port: System.get_env("PORT")],
+  http: [:inet6, port: {:system, :integer, "PORT", 4000}],
+  url: [scheme: "https", host: "codestories-review-bot.herokuapp.com", port: {:system, "PORT"}],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE")
+  secret_key_base: {:system, "SECRET_KEY_BASE"}
 
 # Do not print debug messages in production
 config :logger, level: :info
@@ -69,6 +69,6 @@ config :logger, level: :info
 # See the releases documentation accordingly.
 
 config :codestories_review_bot, CodestoriesReviewBot.Repo,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  url: {:system, "DATABASE_URL"},
+  pool_size: {:system, :integer, "POOL_SIZE", "10"},
   ssl: true
