@@ -7,5 +7,6 @@ defmodule CodestoriesReviewBotWeb.Router do
 
   scope "/api", CodestoriesReviewBotWeb do
     pipe_through :api
+    resources "/categories", CategoryController, only: [:index]
   end
 end
