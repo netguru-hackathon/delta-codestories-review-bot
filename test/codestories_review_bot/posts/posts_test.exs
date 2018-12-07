@@ -61,4 +61,46 @@ defmodule CodestoriesReviewBot.PostsTest do
       assert %Ecto.Changeset{} = Posts.change_category(category)
     end
   end
+
+  describe "reviewers" do
+    alias CodestoriesReviewBot.Posts.Reviewer
+
+    @valid_attrs %{slack_id: "some slack_id"}
+    @update_attrs %{slack_id: "some updated slack_id"}
+    @invalid_attrs %{slack_id: nil}
+
+    def reviewer_fixture(attrs \\ %{}) do
+      {:ok, reviewer} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Posts.create_reviewer()
+
+      reviewer
+    end
+
+    test "list_reviewers/0 returns all reviewers" do
+      reviewer = reviewer_fixture()
+      assert Posts.list_reviewers() == [reviewer]
+    end
+
+    test "get_reviewer!/1 returns the reviewer with given id" do
+      reviewer = reviewer_fixture()
+      assert Posts.get_reviewer!(reviewer.id) == reviewer
+    end
+
+    test "create_reviewer/1 with valid data creates a reviewer" do
+      assert {:ok, %Reviewer{} = reviewer} = Posts.create_reviewer(@valid_attrs)
+      assert reviewer.slack_id == "some slack_id"
+    end
+
+    test "create_reviewer/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Posts.create_reviewer(@invalid_attrs)
+    end
+
+    test "delete_reviewer/1 deletes the reviewer" do
+      reviewer = reviewer_fixture()
+      assert {:ok, %Reviewer{}} = Posts.delete_reviewer(reviewer)
+      assert_raise Ecto.NoResultsError, fn -> Posts.get_reviewer!(reviewer.id) end
+    end
+  end
 end

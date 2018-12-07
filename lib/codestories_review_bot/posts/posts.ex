@@ -101,4 +101,69 @@ defmodule CodestoriesReviewBot.Posts do
   def change_category(%Category{} = category) do
     Category.changeset(category, %{})
   end
+
+  alias CodestoriesReviewBot.Posts.Reviewer
+
+  @doc """
+  Returns the list of reviewers.
+
+  ## Examples
+
+      iex> list_reviewers()
+      [%Reviewer{}, ...]
+
+  """
+  def list_reviewers do
+    Repo.all(Reviewer)
+  end
+
+  @doc """
+  Gets a single reviewer.
+
+  Raises `Ecto.NoResultsError` if the Reviewer does not exist.
+
+  ## Examples
+
+      iex> get_reviewer!(123)
+      %Reviewer{}
+
+      iex> get_reviewer!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_reviewer!(id), do: Repo.get!(Reviewer, id)
+
+  @doc """
+  Creates a reviewer.
+
+  ## Examples
+
+      iex> create_reviewer(%{field: value})
+      {:ok, %Reviewer{}}
+
+      iex> create_reviewer(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_reviewer(attrs \\ %{}) do
+    %Reviewer{}
+    |> Reviewer.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Deletes a Reviewer.
+
+  ## Examples
+
+      iex> delete_reviewer(reviewer)
+      {:ok, %Reviewer{}}
+
+      iex> delete_reviewer(reviewer)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_reviewer(%Reviewer{} = reviewer) do
+    Repo.delete(reviewer)
+  end
 end
