@@ -11,10 +11,6 @@ defmodule CodestoriesReviewBot.ReviewsTest do
     test "list_categories/0 returns all categories", %{category: category} do
       assert Reviews.list_categories() == [category]
     end
-
-    test "get_category!/1 returns the category with given id", %{category: category} do
-      assert Reviews.get_category!(category.id) == category
-    end
   end
 
   describe "reviewers" do
