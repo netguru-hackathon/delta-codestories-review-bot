@@ -3,23 +3,17 @@ defmodule CodestoriesReviewBotWeb.CategoryControllerTest do
 
   alias CodestoriesReviewBot.Reviews
 
-  @create_attrs %{
-    name: "some name"
-  }
-
-  def fixture(:category) do
-    {:ok, category} = Reviews.create_category(@create_attrs)
-    category
-  end
-
   setup %{conn: conn} do
-    {:ok, conn: put_req_header(conn, "accept", "application/json")}
+    %{
+      category: insert(:category, name: "test"),
+      conn: put_req_header(conn, "accept", "application/json")
+    }
   end
 
   describe "index" do
-    test "lists all categories", %{conn: conn} do
+    test "lists all categories", %{category: category, conn: conn} do
       conn = get(conn, Routes.category_path(conn, :index))
-      assert json_response(conn, 200)["data"] == []
+      assert [%{"id" => _, "name" => "test"}] = json_response(conn, 200)["data"]
     end
   end
 end
