@@ -4,7 +4,6 @@ defmodule CodestoriesReviewBot.Reviews.Category do
 
   alias CodestoriesReviewBot.Reviews.Reviewer
 
-
   schema "categories" do
     field :name, :string
 
