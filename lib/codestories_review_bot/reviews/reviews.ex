@@ -1,12 +1,12 @@
-defmodule CodestoriesReviewBot.Posts do
+defmodule CodestoriesReviewBot.Reviews do
   @moduledoc """
-  The Posts context.
+  The Reviews context.
   """
 
   import Ecto.Query, warn: false
   alias CodestoriesReviewBot.Repo
 
-  alias CodestoriesReviewBot.Posts.Category
+  alias CodestoriesReviewBot.Reviews.Category
 
   @doc """
   Returns the list of categories.
@@ -20,6 +20,57 @@ defmodule CodestoriesReviewBot.Posts do
   def list_categories do
     Repo.all(Category)
   end
+
+  alias CodestoriesReviewBot.Reviews.Reviewer
+
+  @doc """
+  Returns the list of reviewers.
+
+  ## Examples
+
+      iex> list_reviewers()
+      [%Reviewer{}, ...]
+
+  """
+  def list_reviewers do
+    Repo.all(Reviewer)
+  end
+
+  @doc """
+  Creates a reviewer.
+
+  ## Examples
+
+      iex> create_reviewer(%{field: value})
+      {:ok, %Reviewer{}}
+
+      iex> create_reviewer(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_reviewer(attrs \\ %{}) do
+    %Reviewer{}
+    |> Reviewer.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Deletes a Reviewer.
+
+  ## Examples
+
+      iex> delete_reviewer(reviewer)
+      {:ok, %Reviewer{}}
+
+      iex> delete_reviewer(reviewer)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_reviewer(%Reviewer{} = reviewer) do
+    Repo.delete(reviewer)
+  end
+
+  # to remove later
 
   @doc """
   Gets a single category.
@@ -102,21 +153,6 @@ defmodule CodestoriesReviewBot.Posts do
     Category.changeset(category, %{})
   end
 
-  alias CodestoriesReviewBot.Posts.Reviewer
-
-  @doc """
-  Returns the list of reviewers.
-
-  ## Examples
-
-      iex> list_reviewers()
-      [%Reviewer{}, ...]
-
-  """
-  def list_reviewers do
-    Repo.all(Reviewer)
-  end
-
   @doc """
   Gets a single reviewer.
 
@@ -132,38 +168,4 @@ defmodule CodestoriesReviewBot.Posts do
 
   """
   def get_reviewer!(id), do: Repo.get!(Reviewer, id)
-
-  @doc """
-  Creates a reviewer.
-
-  ## Examples
-
-      iex> create_reviewer(%{field: value})
-      {:ok, %Reviewer{}}
-
-      iex> create_reviewer(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_reviewer(attrs \\ %{}) do
-    %Reviewer{}
-    |> Reviewer.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Deletes a Reviewer.
-
-  ## Examples
-
-      iex> delete_reviewer(reviewer)
-      {:ok, %Reviewer{}}
-
-      iex> delete_reviewer(reviewer)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_reviewer(%Reviewer{} = reviewer) do
-    Repo.delete(reviewer)
-  end
 end

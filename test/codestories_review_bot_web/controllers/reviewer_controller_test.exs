@@ -1,8 +1,7 @@
 defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
   use CodestoriesReviewBotWeb.ConnCase
 
-  alias CodestoriesReviewBot.Posts
-  alias CodestoriesReviewBot.Posts.Reviewer
+  alias CodestoriesReviewBot.Reviews
 
   @create_attrs %{
     slack_id: "some slack_id"
@@ -10,7 +9,7 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
   @invalid_attrs %{slack_id: nil}
 
   def fixture(:reviewer) do
-    {:ok, reviewer} = Posts.create_reviewer(@create_attrs)
+    {:ok, reviewer} = Reviews.create_reviewer(@create_attrs)
     reviewer
   end
 

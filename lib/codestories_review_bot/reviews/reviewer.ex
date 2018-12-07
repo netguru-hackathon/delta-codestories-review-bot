@@ -1,4 +1,4 @@
-defmodule CodestoriesReviewBot.Posts.Reviewer do
+defmodule CodestoriesReviewBot.Reviews.Reviewer do
   use Ecto.Schema
   import Ecto.Changeset
 

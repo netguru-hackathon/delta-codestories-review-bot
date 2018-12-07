@@ -1,4 +1,4 @@
-defmodule CodestoriesReviewBot.Posts.Category do
+defmodule CodestoriesReviewBot.Reviews.Category do
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,14 +1,14 @@
 defmodule CodestoriesReviewBotWeb.CategoryControllerTest do
   use CodestoriesReviewBotWeb.ConnCase
 
-  alias CodestoriesReviewBot.Posts
+  alias CodestoriesReviewBot.Reviews
 
   @create_attrs %{
     name: "some name"
   }
 
   def fixture(:category) do
-    {:ok, category} = Posts.create_category(@create_attrs)
+    {:ok, category} = Reviews.create_category(@create_attrs)
     category
   end
 
