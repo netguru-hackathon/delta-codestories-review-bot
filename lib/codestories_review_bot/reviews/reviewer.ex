@@ -2,12 +2,18 @@ defmodule CodestoriesReviewBot.Reviews.Reviewer do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias CodestoriesReviewBot.Reviews.Category
 
   schema "reviewers" do
     field :slack_id, :string
-    field :category_id, :id
 
     timestamps()
+
+    belongs_to(
+      :category,
+      Category,
+      foreign_key: :category_id
+    )
   end
 
   @doc false
