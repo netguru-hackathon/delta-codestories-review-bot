@@ -4,7 +4,7 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
   alias CodestoriesReviewBot.Reviews
 
   @create_attrs %{
-    slack_id: "some slack_id"
+    category_id: 1, slack_id: "some slack_id"
   }
   @invalid_attrs %{slack_id: nil}
 

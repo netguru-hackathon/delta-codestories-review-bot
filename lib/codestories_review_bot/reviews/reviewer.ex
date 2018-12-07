@@ -13,7 +13,7 @@ defmodule CodestoriesReviewBot.Reviews.Reviewer do
   @doc false
   def changeset(reviewer, attrs) do
     reviewer
-    |> cast(attrs, [:slack_id])
-    |> validate_required([:slack_id])
+    |> cast(attrs, [:category_id, :slack_id])
+    |> validate_required([:category_id, :slack_id])
   end
 end

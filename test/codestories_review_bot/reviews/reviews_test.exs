@@ -6,7 +6,7 @@ defmodule CodestoriesReviewBot.ReviewsTest do
   describe "categories" do
     alias CodestoriesReviewBot.Reviews.Category
 
-    @valid_attrs %{name: "some name"}
+    @valid_attrs %{category_id: 1, name: "some name"}
     @update_attrs %{name: "some updated name"}
     @invalid_attrs %{name: nil}
 
