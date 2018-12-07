@@ -22,6 +22,7 @@ defmodule CodestoriesReviewBot.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import CodestoriesReviewBot.DataCase
+      import CodestoriesReviewBot.Factory
     end
   end
 
