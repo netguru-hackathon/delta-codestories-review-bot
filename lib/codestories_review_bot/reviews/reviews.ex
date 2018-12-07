@@ -46,6 +46,13 @@ defmodule CodestoriesReviewBot.Reviews do
     end
   end
 
+  def get_random_reviewer(category) do
+    %{category: category}
+    |> list_reviewers()
+    |> Enum.take_random(1)
+    |> List.first
+  end
+
   @doc """
   Gets a single reviewer.
 
@@ -94,5 +101,11 @@ defmodule CodestoriesReviewBot.Reviews do
   """
   def delete_reviewer(%Reviewer{} = reviewer) do
     Repo.delete(reviewer)
+  end
+
+  def get_category_by_name(name) do
+    downcased_name = String.downcase(name)
+    (from c in Category, where: fragment("lower(?)", c.name) == ^downcased_name)
+    |> Repo.one()
   end
 end

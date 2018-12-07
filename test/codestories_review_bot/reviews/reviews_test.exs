@@ -4,12 +4,20 @@ defmodule CodestoriesReviewBot.ReviewsTest do
   alias CodestoriesReviewBot.Reviews
 
   describe "categories" do
+    alias CodestoriesReviewBot.Reviews.Category
+
     setup do
-      %{category: insert(:category)}
+      %{category: insert(:category, name: "RoR")}
     end
 
     test "list_categories/0 returns all categories", %{category: category} do
       assert Reviews.list_categories() == [category]
+    end
+
+    test "get_category_by_name/1 is case insensitive" do
+      assert %Category{name: "RoR"} = Reviews.get_category_by_name("RoR")
+      assert %Category{name: "RoR"} = Reviews.get_category_by_name("ror")
+      assert %Category{name: "RoR"} = Reviews.get_category_by_name("ROR")
     end
   end
 
