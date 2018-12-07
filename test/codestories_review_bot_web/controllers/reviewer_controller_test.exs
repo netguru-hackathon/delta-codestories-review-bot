@@ -3,6 +3,10 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
 
   alias CodestoriesReviewBot.Reviews
 
+  setup do
+    %{category: insert(:category)}
+  end
+
   @create_attrs %{
     category_id: 1, slack_id: "some slack_id"
   }
@@ -25,8 +29,8 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
   end
 
   describe "create reviewer" do
-    test "renders reviewer when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.reviewer_path(conn, :create), reviewer: @create_attrs)
+    test "renders reviewer when data is valid", %{conn: conn, category: category} do
+      conn = post(conn, Routes.reviewer_path(conn, :create), reviewer: %{slack_id: "some_slack_id", category_id: category.id})
       assert %{"id" => id} = json_response(conn, 201)["data"]
     end
 
@@ -37,16 +41,10 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
   end
 
   describe "delete reviewer" do
-    setup [:create_reviewer]
-
-    test "deletes chosen reviewer", %{conn: conn, reviewer: reviewer} do
+    test "deletes chosen reviewer", %{conn: conn, category: category} do
+      reviewer = insert(:reviewer, category: category)
       conn = delete(conn, Routes.reviewer_path(conn, :delete, reviewer))
       assert response(conn, 204)
     end
-  end
-
-  defp create_reviewer(_) do
-    reviewer = fixture(:reviewer)
-    {:ok, reviewer: reviewer}
   end
 end
