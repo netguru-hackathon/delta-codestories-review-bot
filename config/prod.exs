@@ -10,6 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :codestories_review_bot, CodestoriesReviewBotWeb.Endpoint,
+  http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "codestories-review-bot.herokuapp.com", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   secret_key_base: {:system, "SECRET_KEY_BASE"}
