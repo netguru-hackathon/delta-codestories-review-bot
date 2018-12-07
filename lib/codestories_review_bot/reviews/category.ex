@@ -10,8 +10,8 @@ defmodule CodestoriesReviewBot.Reviews.Category do
 
     timestamps()
 
-    has_one(
-      :reviewer,
+    has_many(
+      :reviewers,
       Reviewer,
       foreign_key: :category_id
     )

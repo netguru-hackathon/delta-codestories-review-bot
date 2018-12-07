@@ -11,7 +11,10 @@ defmodule CodestoriesReviewBotWeb.ReviewerView do
   end
 
   def render("reviewer.json", %{reviewer: reviewer}) do
-    %{id: reviewer.id,
-      slack_id: reviewer.slack_id}
+    %{
+      id: reviewer.id,
+      slack_id: reviewer.slack_id,
+      category_id: reviewer.category_id
+    }
   end
 end
