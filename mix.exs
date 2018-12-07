@@ -42,7 +42,8 @@ defmodule CodestoriesReviewBot.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.0.0", only: [:dev, :test], runtime: false},
-      {:confex, "~> 3.3"}
+      {:confex, "~> 3.3"},
+      {:ex_machina, "~> 2.2", only: :test}
     ]
   end
 
