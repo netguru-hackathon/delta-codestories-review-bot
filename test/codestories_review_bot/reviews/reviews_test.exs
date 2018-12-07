@@ -32,6 +32,14 @@ defmodule CodestoriesReviewBot.ReviewsTest do
       assert [%Reviewer{id: ^reviewer_id}] = Reviews.list_reviewers()
     end
 
+    test "list_reviewers/1 returns reviewers for category", %{category: category} do
+      insert(:reviewer, category: category)
+      category2 = insert(:category, name: "second_category")
+      reviewer = insert(:reviewer, category: category2)
+      reviewer_id = reviewer.id
+      assert [%Reviewer{id: ^reviewer_id}] = Reviews.list_reviewers(%{category: "second_category"})
+    end
+
     test "get_reviewer!/1 returns the reviewer with given id", %{category: category} do
       reviewer = insert(:reviewer, category: category)
       reviewer_id = reviewer.id

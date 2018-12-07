@@ -17,6 +17,21 @@ defmodule CodestoriesReviewBotWeb.ReviewerControllerTest do
       conn = get(conn, Routes.reviewer_path(conn, :index))
       assert [%{"id" => _, "category_id" => _, "slack_id" => _}] = json_response(conn, 200)["data"]
     end
+
+    test "returns only reviewers for category if param passed", %{conn: conn} do
+      category = insert(:category, name: "chosen_category")
+      category_id = category.id
+      reviewer = insert(:reviewer, category: category)
+      reviewer_id = reviewer.id
+
+      conn = get(conn, Routes.reviewer_path(conn, :index), %{"category" => "chosen_category"})
+      assert [%{"id" => ^reviewer_id, "category_id" => ^category_id}] = json_response(conn, 200)["data"]
+    end
+
+    test "returns empty list for not existing category", %{conn: conn} do
+      conn = get(conn, Routes.reviewer_path(conn, :index), %{"category" => "not_existing"})
+      assert [] = json_response(conn, 200)["data"]
+    end
   end
 
   describe "create reviewer" do

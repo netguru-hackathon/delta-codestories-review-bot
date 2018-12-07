@@ -5,8 +5,7 @@ defmodule CodestoriesReviewBot.Reviews do
 
   import Ecto.Query, warn: false
   alias CodestoriesReviewBot.Repo
-
-  alias CodestoriesReviewBot.Reviews.Category
+  alias CodestoriesReviewBot.Reviews.{Category, Reviewer}
 
   @doc """
   Returns the list of categories.
@@ -21,8 +20,6 @@ defmodule CodestoriesReviewBot.Reviews do
     Repo.all(Category)
   end
 
-  alias CodestoriesReviewBot.Reviews.Reviewer
-
   @doc """
   Returns the list of reviewers.
 
@@ -34,6 +31,19 @@ defmodule CodestoriesReviewBot.Reviews do
   """
   def list_reviewers do
     Repo.all(Reviewer)
+  end
+
+  def list_reviewers(%{category: category_name}) do
+    Category
+    |> Repo.get_by(name: category_name)
+    |> Repo.preload(:reviewers)
+    |> case do
+      %Category{} = category ->
+        category.reviewers
+
+      nil ->
+        []
+    end
   end
 
   @doc """

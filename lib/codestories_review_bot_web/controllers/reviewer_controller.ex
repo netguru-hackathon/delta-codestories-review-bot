@@ -6,10 +6,16 @@ defmodule CodestoriesReviewBotWeb.ReviewerController do
 
   action_fallback CodestoriesReviewBotWeb.FallbackController
 
+  def index(conn, %{"category" => category}) do
+    reviewers = Reviews.list_reviewers(%{category: category})
+    render(conn, "index.json", reviewers: reviewers)
+  end
+
   def index(conn, _params) do
     reviewers = Reviews.list_reviewers()
     render(conn, "index.json", reviewers: reviewers)
   end
+
 
   def create(conn, %{"reviewer" => reviewer_params}) do
     with {:ok, %Reviewer{} = reviewer} <- Reviews.create_reviewer(reviewer_params) do
