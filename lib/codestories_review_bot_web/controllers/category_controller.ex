@@ -2,7 +2,6 @@ defmodule CodestoriesReviewBotWeb.CategoryController do
   use CodestoriesReviewBotWeb, :controller
 
   alias CodestoriesReviewBot.Posts
-  alias CodestoriesReviewBot.Posts.Category
 
   action_fallback CodestoriesReviewBotWeb.FallbackController
 
