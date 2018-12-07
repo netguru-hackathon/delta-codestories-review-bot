@@ -9,6 +9,6 @@ defmodule CodestoriesReviewBotWeb.Router do
     pipe_through :api
     resources "/categories", CategoryController, only: [:index]
     resources "/reviewers", ReviewerController, except: [:edit, :new, :show, :update]
-    resources "/commands", CommandController, only: [:create]
+    post "/commands", CommandController, :execute
   end
 end
