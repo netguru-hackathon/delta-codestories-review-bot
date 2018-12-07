@@ -66,7 +66,6 @@ defmodule CodestoriesReviewBot.PostsTest do
     alias CodestoriesReviewBot.Posts.Reviewer
 
     @valid_attrs %{slack_id: "some slack_id"}
-    @update_attrs %{slack_id: "some updated slack_id"}
     @invalid_attrs %{slack_id: nil}
 
     def reviewer_fixture(attrs \\ %{}) do
