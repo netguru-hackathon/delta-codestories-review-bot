@@ -48,10 +48,10 @@ defmodule CodestoriesReviewBot.ReviewsTest do
       assert [%Reviewer{id: ^reviewer_id}] = Reviews.list_reviewers(%{category: "second_category"})
     end
 
-    test "get_reviewer!/1 returns the reviewer with given id", %{category: category} do
+    test "get_reviewer_by_slack_id/1 returns the reviewer with given slack_id", %{category: category} do
       reviewer = insert(:reviewer, category: category)
-      reviewer_id = reviewer.id
-      assert %Reviewer{id: ^reviewer_id} = Reviews.get_reviewer!(reviewer_id)
+      slack_id = reviewer.slack_id
+      assert %Reviewer{slack_id: ^slack_id} = Reviews.get_reviewer_by_slack_id(slack_id)
     end
 
     test "create_reviewer/1 with valid data creates a reviewer", %{valid_attrs: valid_attrs} do
@@ -66,7 +66,6 @@ defmodule CodestoriesReviewBot.ReviewsTest do
     test "delete_reviewer/1 deletes the reviewer", %{category: category} do
       reviewer = insert(:reviewer, category: category)
       assert {:ok, %Reviewer{}} = Reviews.delete_reviewer(reviewer)
-      assert_raise Ecto.NoResultsError, fn -> Reviews.get_reviewer!(reviewer.id) end
     end
   end
 end
