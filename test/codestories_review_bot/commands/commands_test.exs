@@ -32,7 +32,7 @@ defmodule CodestoriesReviewBot.CommandsTest do
 
     test "remove_from category", %{reviewer: reviewer} do
       assert "You're no longer Codestories reviewer for category 'RoR'" ==
-        Commands.call(["remove_from", "RoR"], reviewer.id)
+        Commands.call(["remove_from", "RoR"], reviewer.slack_id)
     end
 
     test "invalid command" do
