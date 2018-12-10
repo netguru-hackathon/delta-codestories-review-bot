@@ -4,7 +4,7 @@ defmodule CodestoriesReviewBot.Repo do
     adapter: Ecto.Adapters.Postgres
 
   def init(_, config) do
-   config = Confex.Resolver.resolve!(config)
-   {:ok, config}
+    config = Confex.Resolver.resolve!(config)
+    {:ok, config}
   end
 end

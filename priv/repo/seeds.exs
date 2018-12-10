@@ -13,10 +13,10 @@
 alias CodestoriesReviewBot.Repo
 alias CodestoriesReviewBot.Reviews.Category
 
-Repo.insert! %Category{name: "Android"}
-Repo.insert! %Category{name: "Elixir"}
-Repo.insert! %Category{name: "Front-end"}
-Repo.insert! %Category{name: "iOS"}
-Repo.insert! %Category{name: "Machine Learning"}
-Repo.insert! %Category{name: "QA"}
-Repo.insert! %Category{name: "RoR"}
+Repo.insert!(%Category{name: "Android"})
+Repo.insert!(%Category{name: "Elixir"})
+Repo.insert!(%Category{name: "Front-end"})
+Repo.insert!(%Category{name: "iOS"})
+Repo.insert!(%Category{name: "Machine Learning"})
+Repo.insert!(%Category{name: "QA"})
+Repo.insert!(%Category{name: "RoR"})

@@ -45,10 +45,14 @@ defmodule CodestoriesReviewBot.ReviewsTest do
       category2 = insert(:category, name: "second_category")
       reviewer = insert(:reviewer, category: category2)
       reviewer_id = reviewer.id
-      assert [%Reviewer{id: ^reviewer_id}] = Reviews.list_reviewers(%{category: "second_category"})
+
+      assert [%Reviewer{id: ^reviewer_id}] =
+               Reviews.list_reviewers(%{category: "second_category"})
     end
 
-    test "get_reviewer_by_slack_id/1 returns the reviewer with given slack_id", %{category: category} do
+    test "get_reviewer_by_slack_id/1 returns the reviewer with given slack_id", %{
+      category: category
+    } do
       reviewer = insert(:reviewer, category: category)
       slack_id = reviewer.slack_id
       assert %Reviewer{slack_id: ^slack_id} = Reviews.get_reviewer_by_slack_id(slack_id)
@@ -59,7 +63,9 @@ defmodule CodestoriesReviewBot.ReviewsTest do
       assert reviewer.slack_id == "some slack_id"
     end
 
-    test "create_reviewer/1 with invalid data returns error changeset", %{invalid_attrs: invalid_attrs} do
+    test "create_reviewer/1 with invalid data returns error changeset", %{
+      invalid_attrs: invalid_attrs
+    } do
       assert {:error, %Ecto.Changeset{}} = Reviews.create_reviewer(invalid_attrs)
     end
 

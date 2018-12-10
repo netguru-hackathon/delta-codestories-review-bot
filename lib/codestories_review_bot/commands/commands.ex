@@ -7,10 +7,10 @@ defmodule CodestoriesReviewBot.Commands do
     mention_list =
       %{category: category}
       |> Reviews.list_reviewers()
-      |> Enum.map(& "<@#{&1.slack_id}>")
+      |> Enum.map(&"<@#{&1.slack_id}>")
       |> Enum.join(", ")
 
-    "Codestories reviewers for category '#{category}': "  <> mention_list
+    "Codestories reviewers for category '#{category}': " <> mention_list
   end
 
   def call(["reviewer", category_name], _user_id) do

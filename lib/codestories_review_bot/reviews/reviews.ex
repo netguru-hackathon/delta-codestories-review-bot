@@ -50,7 +50,7 @@ defmodule CodestoriesReviewBot.Reviews do
     %{category: category}
     |> list_reviewers()
     |> Enum.take_random(1)
-    |> List.first
+    |> List.first()
   end
 
   def get_reviewer_by_slack_id(slack_id), do: Repo.get_by(Reviewer, slack_id: slack_id)
