@@ -14,12 +14,12 @@ defmodule CodestoriesReviewBotWeb.CategoryControllerTest do
 
   describe "execute/2" do
     test "lists reviewers for given category", %{conn: conn} do
-      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "reviewers ror"})
+      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "reviewers ror", user_id: "some_slack_id"})
       assert "Codestories reviewers for category 'RoR': <@123>, <@456>" = text_response(conn, 200)
     end
 
     test "gets random reviewer for given category", %{conn: conn} do
-      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "reviewer ror"})
+      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "reviewer ror", user_id: "some_slack_id"})
       assert Regex.match?(~r/\ACodestories reviewer for category 'RoR': (<@123>|<@456>)\z/, text_response(conn, 200))
     end
 
@@ -36,7 +36,7 @@ defmodule CodestoriesReviewBotWeb.CategoryControllerTest do
     end
 
     test "handles invalid command", %{conn: conn} do
-      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "invalid command"})
+      conn = post(conn, Routes.commands_path(conn, :execute), %{text: "invalid command", user_id: "some_slack_id"})
       assert "Invalid command" == text_response(conn, 200)
     end
   end

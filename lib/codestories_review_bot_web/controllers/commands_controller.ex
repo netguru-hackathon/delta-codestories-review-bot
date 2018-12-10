@@ -5,8 +5,8 @@ defmodule CodestoriesReviewBotWeb.CommandsController do
 
   action_fallback CodestoriesReviewBotWeb.FallbackController
 
-  def execute(conn, params) do
-    with result <- String.split(params["text"]) |> Commands.call(params["user_id"]) do
+  def execute(conn, %{"text" => command, "user_id" => user_id}) do
+    with result <- String.split(command) |> Commands.call(user_id) do
       text(conn, result)
     end
   end
