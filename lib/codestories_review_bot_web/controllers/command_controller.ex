@@ -3,7 +3,7 @@ defmodule CodestoriesReviewBotWeb.CommandController do
 
   action_fallback CodestoriesReviewBotWeb.FallbackController
 
-  def create(conn, _params) do
+  def execute(conn, _params) do
     text(conn, "We're working on it. :rocket:")
   end
 end
