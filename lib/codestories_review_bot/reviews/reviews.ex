@@ -46,21 +46,14 @@ defmodule CodestoriesReviewBot.Reviews do
     end
   end
 
-  @doc """
-  Gets a single reviewer.
+  def get_random_reviewer(category) do
+    %{category: category}
+    |> list_reviewers()
+    |> Enum.take_random(1)
+    |> List.first()
+  end
 
-  Raises `Ecto.NoResultsError` if the Reviewer does not exist.
-
-  ## Examples
-
-      iex> get_reviewer!(123)
-      %Reviewer{}
-
-      iex> get_reviewer!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_reviewer!(id), do: Repo.get!(Reviewer, id)
+  def get_reviewer_by_slack_id(slack_id), do: Repo.get_by(Reviewer, slack_id: slack_id)
 
   @doc """
   Creates a reviewer.
@@ -94,5 +87,11 @@ defmodule CodestoriesReviewBot.Reviews do
   """
   def delete_reviewer(%Reviewer{} = reviewer) do
     Repo.delete(reviewer)
+  end
+
+  def get_category_by_name(name) do
+    downcased_name = String.downcase(name)
+
+    Repo.one(from c in Category, where: fragment("lower(?)", c.name) == ^downcased_name)
   end
 end

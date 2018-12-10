@@ -7,6 +7,6 @@ defmodule CodestoriesReviewBotWeb.Router do
 
   scope "/api", CodestoriesReviewBotWeb do
     pipe_through :api
-    post "/commands", CommandController, :execute
+    post "/commands", CommandsController, :execute
   end
 end
