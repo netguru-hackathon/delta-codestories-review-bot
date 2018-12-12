@@ -75,7 +75,7 @@ You should be able to visit the page using [`localhost:4000`](http://localhost:4
 ### :new: Deployments
 
 To make deployments and manage the apps you need privileges to the Heroku's project.
-Automatically deployments to the Production are already enabled for `master` branch.
+Automatic deployments to the Production are already enabled for `master` branch.
 
 ## :question: Extras
 
