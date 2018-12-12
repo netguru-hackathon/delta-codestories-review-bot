@@ -44,7 +44,7 @@ Define local values for the environment variables defined in `config\dev.exs` fi
 
 ### :rocket: Running server on the local machine
 
-Then configure your database in config/dev.exs and run:
+Then configure your database in `config\dev.exs` and run:
 
 ```
 $ mix ecto.create
