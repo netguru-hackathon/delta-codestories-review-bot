@@ -40,11 +40,11 @@ $ mix deps.get
 
 ### :pencil: Default configuration
 
-Define local values for the environment variables defined in `config\dev.exs` file.
+Define local values for the environment variables defined in `config/dev.exs` file.
 
 ### :rocket: Running server on the local machine
 
-Then configure your database in `config\dev.exs` and run:
+Then configure your database in `config/dev.exs` and run:
 
 ```
 $ mix ecto.create
