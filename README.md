@@ -8,7 +8,7 @@ Our awesome bot to trade Codestories drafts! 🚀
 
 | Name |  Version |
 | :--: | :---: |
-| [Elixir](https://elixir-lang.org/) | 1.7.4 |
+| [Elixir](https://elixir-lang.org/) | 1.8.1 |
 | [Phoenix](https://phoenixframework.org/) | 1.4.0 |
 | [PostgreSQL](http://www.postgresql.org/) | 10.6 |
 
